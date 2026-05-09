@@ -1,0 +1,16 @@
+[
+  {
+    "name": "McDonald's",
+    "icon": "icon-burger",
+    "location": "San Diego, California",
+    "cuisine": "American fast food",
+    "href": "restaurants/mcdonalds.html"
+  },
+  {
+    "name": "Taco Bell",
+    "icon": "icon-taco",
+    "location": "San Francisco, California",
+    "cuisine": "Tex-Mex",
+    "href": "restaurants/taco-bell.html"
+  }
+]

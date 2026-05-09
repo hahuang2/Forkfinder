@@ -33,22 +33,42 @@
 	<section class="card span-12">
 		<h2>Restaurant Directory</h2>
 		<p><strong>Pick a restaurant:</strong></p>
-		<ul class="stack-list">
-			<li>
-				<svg class="icon" aria-hidden="true">
-					<use href="/icons/restaurant.svg#icon-burger" />
-				</svg>
-				<a href="restaurants/mcdonalds.html"><strong>McDonald's</strong></a>
-			</li>
-			<li>
-				<svg class="icon" aria-hidden="true">
-					<use href="/icons/restaurant.svg#icon-taco" />
-				</svg>
-				<a href="restaurants/taco-bell.html"><strong>Taco Bell</strong></a>
-			</li>
-		</ul>
+		<ff-restaurants src="/data/restaurants.json">
+			<!-- fallback content for no-JS: keep original list -->
+			<ul class="stack-list">
+				<li>
+					<svg class="icon" aria-hidden="true">
+						<use href="/icons/restaurant.svg#icon-burger" />
+					</svg>
+					<a href="restaurants/mcdonalds.html"><strong>McDonald's</strong></a>
+				</li>
+				<li>
+					<svg class="icon" aria-hidden="true">
+						<use href="/icons/restaurant.svg#icon-taco" />
+					</svg>
+					<a href="restaurants/taco-bell.html"><strong>Taco Bell</strong></a>
+				</li>
+			</ul>
+		</ff-restaurants>
 	</section>
 </main>
+<script type="importmap">
+{
+	"imports": {
+		"@unbndl/html": "https://unpkg.com/@unbndl/html"
+	}
+}
+</script>
+<script type="module">
+	import { define } from "@unbndl/html";
+	import { RestaurantElement } from "/js/restaurant.js";
+	import { RestaurantsListElement } from "/js/restaurants-list.js";
+
+	define({
+		"ff-restaurant": RestaurantElement,
+		"ff-restaurants": RestaurantsListElement
+	});
+</script>
 <script type="module" src="/scripts/theme-toggle.js"></script>
 </body>
 </html>

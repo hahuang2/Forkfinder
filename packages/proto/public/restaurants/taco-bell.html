@@ -35,21 +35,9 @@
 </header>
 <main class="page-grid">
 	<section class="card span-4">
-		<h1>
-			<svg class="icon" aria-hidden="true">
-				<use href="/icons/restaurant.svg#icon-taco" />
-			</svg>
+		<ff-restaurant icon="icon-taco" location="San Francisco, California" cuisine="Tex-Mex" back-href="../index.html">
 			Taco Bell
-		</h1>
-		<p>
-			<svg class="icon" aria-hidden="true">
-				<use href="/icons/restaurant.svg#icon-location" />
-			</svg>
-			<strong>Location:</strong> San Francisco, California
-		</p>
-		<p><strong>Cuisine:</strong> Tex-Mex</p>
-		<p><strong>Back:</strong> <a href="../index.html">Restaurants</a></p>
-	</section>
+		</ff-restaurant>
 	<section class="card span-4">
 		<h2>
 			<svg class="icon" aria-hidden="true">
@@ -69,6 +57,21 @@
 		</ul>
 	</section>
 </main>
+<script type="importmap">
+{
+	"imports": {
+		"@unbndl/html": "https://unpkg.com/@unbndl/html"
+	}
+}
+</script>
+<script type="module">
+	import { define } from "@unbndl/html";
+	import { RestaurantElement } from "/js/restaurant.js";
+
+	define({
+		"ff-restaurant": RestaurantElement
+	});
+</script>
 <script type="module" src="/scripts/theme-toggle.js"></script>
 </body>
 </html>
