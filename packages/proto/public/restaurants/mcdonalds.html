@@ -7,71 +7,56 @@
 <link rel="stylesheet" href="/styles/tokens.css">
 <link rel="stylesheet" href="/styles/page.css">
 <link rel="stylesheet" href="/styles/layout.css">
-</head>
-<body class="page-restaurant">
-<header class="site-header">
-	<div class="site-header__brand">
-		<div class="site-header__appname">
-			<svg class="icon" aria-hidden="true">
-				<use href="/icons/restaurant.svg#icon-utensils" />
-			</svg>
-			<a href="/index.html"><strong>ForkFinder</strong></a>
-		</div>
-		<p class="site-header__page">Restaurant Details</p>
-	</div>
-	<nav class="site-header__nav" aria-label="Primary">
-		<a href="/index.html">Home</a>
-		<a href="/restaurants/mcdonalds.html" aria-current="page">McDonald's</a>
-		<a href="/restaurants/taco-bell.html">Taco Bell</a>
-	</nav>
-	<label class="theme-toggle site-header__control">
-		<input type="checkbox" autocomplete="off" />
-		Dark mode
-	</label>
-	<div class="site-header__user" aria-label="Signed in user">
-		<span class="avatar" aria-hidden="true">AH</span>
-		<span>Anthony</span>
-	</div>
-</header>
-<main class="page-grid">
-	<section class="card span-4">
-		<ff-restaurant icon="icon-burger" location="San Diego, California" cuisine="American fast food" back-href="../index.html">
-			McDonald's
-		</ff-restaurant>
-	<section class="card span-4">
-		<h2>
-			<svg class="icon" aria-hidden="true">
-				<use href="/icons/restaurant.svg#icon-menu" />
-			</svg>
-			Menu
-		</h2>
-		<ul class="stack-list">
-			<li>Big Mac</li>
-			<li>World Famous Fries</li>
-		</ul>
-	</section>
-	<section class="card span-4">
-		<h2>Customers and Reviews</h2>
-		<ul class="stack-list">
-			<li>Bob: Fast service and fresh fries.</li>
-		</ul>
-	</section>
-</main>
 <script type="importmap">
 {
 	"imports": {
-		"@unbndl/html": "https://unpkg.com/@unbndl/html"
+		"@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+		"@unbndl/html": "https://unpkg.com/@unbndl/html",
+		"@unbndl/view": "https://unpkg.com/@unbndl/view"
 	}
 }
 </script>
 <script type="module">
 	import { define } from "@unbndl/html";
+	import { Auth } from "@unbndl/auth";
+	import { HeaderElement } from "/js/header.js";
 	import { RestaurantElement } from "/js/restaurant.js";
 
 	define({
+		"auth-provider": Auth.Provider,
+		"ff-header": HeaderElement,
 		"ff-restaurant": RestaurantElement
 	});
 </script>
-<script type="module" src="/scripts/theme-toggle.js"></script>
+</head>
+<body class="page-restaurant">
+<auth-provider>
+	<ff-header current="mcdonalds" subtitle="Restaurant Details"></ff-header>
+	<main class="page-grid">
+		<section class="card span-4">
+			<ff-restaurant icon="icon-burger" location="San Diego, California" cuisine="American fast food" back-href="../index.html">
+				McDonald's
+			</ff-restaurant>
+		</section>
+		<section class="card span-4">
+			<h2>
+				<svg class="icon" aria-hidden="true">
+					<use href="/icons/restaurant.svg#icon-menu" />
+				</svg>
+				Menu
+			</h2>
+			<ul class="stack-list">
+				<li>Big Mac</li>
+				<li>World Famous Fries</li>
+			</ul>
+		</section>
+		<section class="card span-4">
+			<h2>Customers and Reviews</h2>
+			<ul class="stack-list">
+				<li>Bob: Fast service and fresh fries.</li>
+			</ul>
+		</section>
+	</main>
+</auth-provider>
 </body>
 </html>

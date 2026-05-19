@@ -3,9 +3,28 @@ body {
   padding: var(--space-4) var(--space-4) var(--space-6);
 }
 
+auth-provider {
+  display: block;
+  width: min(100%, var(--max-content-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .site-header,
 main {
   width: min(100%, var(--max-content-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+auth-provider > main.page-grid {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+body.page-auth auth-provider > main {
+  width: min(100%, 32rem);
   margin-left: auto;
   margin-right: auto;
 }

@@ -7,68 +7,40 @@
 <link rel="stylesheet" href="/styles/tokens.css">
 <link rel="stylesheet" href="/styles/page.css">
 <link rel="stylesheet" href="/styles/layout.css">
-</head>
-<body class="page-home">
-<header class="site-header site-header--hero">
-	<div class="site-header__lead">
-		<p class="site-header__eyebrow">Homepage</p>
-		<h1>
-			<svg class="icon" aria-hidden="true">
-				<use href="/icons/restaurant.svg#icon-utensils" />
-			</svg>
-			ForkFinder
-		</h1>
-	</div>
-	<nav class="site-header__nav site-header__nav--hero" aria-label="Primary">
-		<a href="/index.html" aria-current="page">Home</a>
-		<a href="/restaurants/mcdonalds.html">McDonald's</a>
-		<a href="/restaurants/taco-bell.html">Taco Bell</a>
-	</nav>
-	<label class="theme-toggle site-header__control">
-		<input type="checkbox" autocomplete="off" />
-		Dark mode
-	</label>
-</header>
-<main class="page-grid">
-	<section class="card span-12">
-		<h2>Restaurant Directory</h2>
-		<p><strong>Pick a restaurant:</strong></p>
-		<ff-restaurants src="/data/restaurants.json">
-			<!-- fallback content for no-JS: keep original list -->
-			<ul class="stack-list">
-				<li>
-					<svg class="icon" aria-hidden="true">
-						<use href="/icons/restaurant.svg#icon-burger" />
-					</svg>
-					<a href="restaurants/mcdonalds.html"><strong>McDonald's</strong></a>
-				</li>
-				<li>
-					<svg class="icon" aria-hidden="true">
-						<use href="/icons/restaurant.svg#icon-taco" />
-					</svg>
-					<a href="restaurants/taco-bell.html"><strong>Taco Bell</strong></a>
-				</li>
-			</ul>
-		</ff-restaurants>
-	</section>
-</main>
 <script type="importmap">
 {
 	"imports": {
-		"@unbndl/html": "https://unpkg.com/@unbndl/html"
+		"@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+		"@unbndl/html": "https://unpkg.com/@unbndl/html",
+		"@unbndl/view": "https://unpkg.com/@unbndl/view"
 	}
 }
 </script>
 <script type="module">
 	import { define } from "@unbndl/html";
+	import { Auth } from "@unbndl/auth";
+	import { HeaderElement } from "/js/header.js";
 	import { RestaurantElement } from "/js/restaurant.js";
 	import { RestaurantsListElement } from "/js/restaurants-list.js";
 
 	define({
+		"auth-provider": Auth.Provider,
+		"ff-header": HeaderElement,
 		"ff-restaurant": RestaurantElement,
 		"ff-restaurants": RestaurantsListElement
 	});
 </script>
-<script type="module" src="/scripts/theme-toggle.js"></script>
+</head>
+<body class="page-home">
+<auth-provider>
+	<ff-header current="home" subtitle="Homepage"></ff-header>
+	<main class="page-grid">
+		<section class="card span-12">
+			<h2>Restaurant Directory</h2>
+			<p><strong>Pick a restaurant:</strong></p>
+			<ff-restaurants src="/api/restaurants"></ff-restaurants>
+		</section>
+	</main>
+</auth-provider>
 </body>
 </html>
