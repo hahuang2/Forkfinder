@@ -13,6 +13,11 @@ export type Msg =
       Reactions?
     ]
   | [
+      "restaurant/delete",
+      { restaurantId: string },
+      Reactions?
+    ]
+  | [
       "restaurant/save",
       { restaurantId: string; restaurant: Restaurant },
       Reactions?

@@ -103,6 +103,9 @@ export class RestaurantViewElement extends HTMLElement {
         <button class="primary-action" type="button" data-action="edit">
           Edit restaurant
         </button>
+        <button class="danger-action" type="button" data-action="delete">
+          Delete restaurant
+        </button>
       </section>
 
       <section class="facts">
@@ -199,6 +202,21 @@ export class RestaurantViewElement extends HTMLElement {
     }
     if (action === "cancel-edit") {
       this.viewModel.set("mode", "view");
+    }
+    if (action === "delete") {
+      const restaurantId = this.viewModel.toObject().restaurantId;
+      if (!restaurantId) return;
+      Store.dispatch(this, [
+        "restaurant/delete",
+        { restaurantId },
+        {
+          onFailure: (error: Error) => console.log("ERROR:", error),
+          onSuccess: () =>
+            BrowserHistory.dispatch(this, "history/navigate", {
+              href: "/app"
+            })
+        }
+      ]);
     }
   }
 
@@ -369,6 +387,7 @@ export class RestaurantViewElement extends HTMLElement {
     }
 
     .primary-action,
+    .danger-action,
     .secondary-action {
       border-radius: 999px;
       padding: 0.75rem 1rem;
@@ -381,6 +400,12 @@ export class RestaurantViewElement extends HTMLElement {
       border: 0;
       background: var(--color-background-header);
       color: var(--color-text-inverted);
+    }
+
+    .danger-action {
+      border: 0;
+      background: #b83a3a;
+      color: #fff;
     }
 
     .secondary-action {

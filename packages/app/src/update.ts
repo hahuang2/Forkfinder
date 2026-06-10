@@ -12,7 +12,8 @@ import { restaurantSlug } from "./restaurant-id.ts";
 
 export type Cmd =
   | ["restaurants/load", { restaurants: Restaurant[] }]
-  | ["restaurant/load", { restaurantId: string; restaurant?: Restaurant }];
+  | ["restaurant/load", { restaurantId: string; restaurant?: Restaurant }]
+  | ["restaurant/remove", { restaurantId: string }];
 
 export function update(
   model: Readonly<Model>,
@@ -77,10 +78,40 @@ export function update(
         )
       };
 
+    case "restaurant/remove":
+      return {
+        ...model,
+        selectedRestaurantId:
+          model.selectedRestaurantId === payload.restaurantId
+            ? undefined
+            : model.selectedRestaurantId,
+        restaurant:
+          model.selectedRestaurantId === payload.restaurantId
+            ? undefined
+            : model.restaurant,
+        restaurants: (model.restaurants || fallbackRestaurants).filter(
+          (restaurant) => restaurantSlug(restaurant) !== payload.restaurantId
+        )
+      };
+
     case "restaurant/create":
       return [
         model as Model,
         createRestaurant(payload, user)
+          .then((command) => {
+            reactions?.onSuccess?.();
+            return command;
+          })
+          .catch((error) => {
+            reactions?.onFailure?.(error);
+            throw error;
+          })
+      ];
+
+    case "restaurant/delete":
+      return [
+        model as Model,
+        deleteRestaurant(payload, user)
           .then((command) => {
             reactions?.onSuccess?.();
             return command;
@@ -213,6 +244,23 @@ function createRestaurant(
       "restaurants/load",
       { restaurants: [...(fallbackRestaurants as Restaurant[]), payload.restaurant] }
     ] as Cmd);
+}
+
+function deleteRestaurant(
+  payload: { restaurantId: string },
+  user: Auth.Model
+) {
+  return fetch(`/api/restaurants/${payload.restaurantId}`, {
+    method: "DELETE",
+    headers: Auth.headers(user)
+  })
+    .then((response) => {
+      if (response.status === 204) {
+        return ["restaurant/remove", payload] as Cmd;
+      }
+      throw new Error(`${response.status} status; deleting restaurant`);
+    })
+    .catch(() => ["restaurant/remove", payload] as Cmd);
 }
 
 function upsertRestaurant(restaurants, restaurant) {
