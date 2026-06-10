@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <style>
+      body {
+        min-height: 100vh;
+        padding: 1.5rem;
+      }
+
+      .auth-shell {
+        width: min(100%, 32rem);
+        margin: 0 auto;
+      }
+
+      .auth-card {
+        display: grid;
+        gap: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 0.5rem;
+        background: var(--color-background-surface);
+        box-shadow: 0 10px 22px rgba(31, 41, 51, 0.08);
+      }
+
+      .auth-card h1 {
+        margin-bottom: 0;
+      }
+
+      .auth-card label {
+        display: grid;
+        gap: 0.5rem;
+        font-weight: 700;
+      }
+
+      .auth-card input {
+        width: 100%;
+        border: 1px solid var(--color-border);
+        border-radius: 0.5rem;
+        padding: 0.85rem 1rem;
+        background: var(--color-background-surface);
+        color: var(--color-text);
+        font: inherit;
+      }
+
+      .auth-links {
+        margin-top: 1rem;
+        text-align: center;
+      }
+    </style>
+    <script type="module" src="/src/auth-pages.ts"></script>
+  </head>
+  <body>
+    <auth-provider>
+      <ff-header></ff-header>
+      <main class="auth-shell">
+        <section class="auth-card">
+          <h1>Create Account</h1>
+          <login-form
+            api="/auth/register"
+            redirect="/app"
+            submit-text="Register"
+          >
+            <label>
+              <span>Username</span>
+              <input name="username" autocomplete="off" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password" />
+            </label>
+            <span slot="submit-label">Register</span>
+          </login-form>
+        </section>
+        <p class="auth-links">
+          Already have an account? <a href="/login.html">Sign in here</a>.
+        </p>
+      </main>
+    </auth-provider>
+  </body>
+</html>

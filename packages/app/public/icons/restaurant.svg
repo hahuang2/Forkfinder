@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="icon-utensils" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" d="M12 4a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm0 2.2A5.8 5.8 0 1 1 6.2 12 5.81 5.81 0 0 1 12 6.2z"/>
+      <path d="M4.4 2h1v3.1h.8V2h1v3.1H8V2h1v5.2A2.6 2.6 0 0 1 6.7 9.8V22h-1.2V9.8A2.6 2.6 0 0 1 3.2 7.2V2h1.2v3.1h.8z"/>
+      <path d="M18.4 2.4c1.55.42 2.4 1.71 2.4 3.8 0 2.41-1.08 4-3 4.5V22h-1.2V2h.6c.48 0 .89.06 1.2.14z"/>
+      <path d="M12 8.3a2.8 2.8 0 0 0-2.8 2.8c0 2.18 2.8 5.43 2.8 5.43s2.8-3.25 2.8-5.43A2.8 2.8 0 0 0 12 8.3zm0 4.15a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7z"/>
+    </symbol>
+
+    <symbol id="icon-burger" viewBox="0 0 24 24">
+      <path d="M4 11c0-4 3.582-7 8-7s8 3 8 7H4z"/>
+      <path d="M3 13h18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <path d="M4 17h16v3H4z"/>
+      <circle cx="8" cy="9" r="0.6"/>
+      <circle cx="11" cy="8" r="0.6"/>
+      <circle cx="14" cy="9" r="0.6"/>
+    </symbol>
+
+    <symbol id="icon-taco" viewBox="0 0 24 24">
+      <path d="M3 14a9 9 0 0 1 18 0H3z"/>
+      <path d="M5 14h14a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3z"/>
+      <circle cx="9" cy="12" r="0.7"/>
+      <circle cx="12" cy="11" r="0.7"/>
+      <circle cx="15" cy="12" r="0.7"/>
+    </symbol>
+
+    <symbol id="icon-location" viewBox="0 0 24 24">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </symbol>
+
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+      <path d="M7 8h10v2H7z"/>
+      <path d="M7 12h10v2H7z"/>
+      <path d="M7 16h6v2H7z"/>
+    </symbol>
+  </defs>
+</svg>
